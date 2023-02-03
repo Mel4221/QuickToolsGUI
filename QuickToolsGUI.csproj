@@ -12,6 +12,21 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,6 +46,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>setting.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -54,6 +73,55 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuickTools\DLL\QColors\colorNoParam.cs" />
+    <Compile Include="QuickTools\DLL\QColors\colorWithParam.cs" />
+    <Compile Include="QuickTools\DLL\QConsole\ArrayWalker.cs" />
+    <Compile Include="QuickTools\DLL\QConsole\ArrowsKey.cs" />
+    <Compile Include="QuickTools\DLL\QConsole\CInput.cs" />
+    <Compile Include="QuickTools\DLL\QConsole\CInputPartial.cs" />
+    <Compile Include="QuickTools\DLL\QConsole\console.cs" />
+    <Compile Include="QuickTools\DLL\QConsole\CProgressBar.cs" />
+    <Compile Include="QuickTools\DLL\QConsole\DirecectionHandeler.cs" />
+    <Compile Include="QuickTools\DLL\QConsole\LoopInput.cs" />
+    <Compile Include="QuickTools\DLL\QConsole\Options.cs" />
+    <Compile Include="QuickTools\DLL\QConsole\Panel.cs" />
+    <Compile Include="QuickTools\DLL\QConsole\QInput.cs" />
+    <Compile Include="QuickTools\DLL\QCore\Check.cs" />
+    <Compile Include="QuickTools\DLL\QCore\Get.cs" />
+    <Compile Include="QuickTools\DLL\QCore\GlobalSuppressions.cs" />
+    <Compile Include="QuickTools\DLL\QCore\IConvert.cs" />
+    <Compile Include="QuickTools\DLL\QCore\IRandom.cs" />
+    <Compile Include="QuickTools\DLL\QCore\printList.cs" />
+    <Compile Include="QuickTools\DLL\QData\DB.cs" />
+    <Compile Include="QuickTools\DLL\QData\Error.cs" />
+    <Compile Include="QuickTools\DLL\QData\MiniDB_Constructors.cs" />
+    <Compile Include="QuickTools\DLL\QData\MiniDB_Fields.cs" />
+    <Compile Include="QuickTools\DLL\QData\MiniDB_Methods.cs" />
+    <Compile Include="QuickTools\DLL\QData\QSettings.cs" />
+    <Compile Include="QuickTools\DLL\QData\user.cs" />
+    <Compile Include="QuickTools\DLL\QData\XmlHelper.cs" />
+    <Compile Include="QuickTools\DLL\QIO\Binary.cs" />
+    <Compile Include="QuickTools\DLL\QIO\BinaryDumper.cs" />
+    <Compile Include="QuickTools\DLL\QIO\BinaryReadAndWriteBytes.cs" />
+    <Compile Include="QuickTools\DLL\QIO\BinaryReaderTester.cs" />
+    <Compile Include="QuickTools\DLL\QIO\Binary_Fields.cs" />
+    <Compile Include="QuickTools\DLL\QIO\FilesMaper.cs" />
+    <Compile Include="QuickTools\DLL\QIO\InputParser.cs" />
+    <Compile Include="QuickTools\DLL\QIO\Logger.cs" />
+    <Compile Include="QuickTools\DLL\QIO\QBox.cs" />
+    <Compile Include="QuickTools\DLL\QIO\QZip.cs" />
+    <Compile Include="QuickTools\DLL\QIO\QZipArchive.cs" />
+    <Compile Include="QuickTools\DLL\QIO\reader.cs" />
+    <Compile Include="QuickTools\DLL\QIO\RecursiveFileSearch.cs" />
+    <Compile Include="QuickTools\DLL\QIO\writer.cs" />
+    <Compile Include="QuickTools\DLL\QNet\DownloadManager.cs" />
+    <Compile Include="QuickTools\DLL\QNet\QHttp.cs" />
+    <Compile Include="QuickTools\DLL\QNet\QServer.cs" />
+    <Compile Include="QuickTools\DLL\QSecurity\Decryptor.cs" />
+    <Compile Include="QuickTools\DLL\QSecurity\Encryptor.cs" />
+    <Compile Include="QuickTools\DLL\QSecurity\LowEncrypter.cs" />
+    <Compile Include="QuickTools\DLL\QSecurity\SecureBinary.cs" />
+    <Compile Include="QuickTools\DLL\QSecurity\Traductor.cs" />
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -75,12 +143,29 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="QuickTools\DLL\QCore\Decriptor.intent" />
+    <None Include="QuickTools\DLL\QCore\encrypter.intent" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="Tools\" />
+    <Content Include="QuickTools\DLL\QCore\notes-from-tester.txt" />
+    <Content Include="QuickTools\DLL\QCore\setting.ico" />
+    <Content Include="setting.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

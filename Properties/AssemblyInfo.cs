@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("QuickToolsGUI")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("This is the GUI for the QuickTools Library since all it's functionalities could be exposed to other users that may not konw how to code to get it set up and running")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("MBV")]
 [assembly: AssemblyProduct("QuickToolsGUI")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("MIT")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible
