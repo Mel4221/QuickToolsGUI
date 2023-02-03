@@ -1,0 +1,11 @@
+C:\Users\Melquiceded Balbi\Documents\csharp\QuickToolsGUI\bin\Debug\QuickToolsGUI.exe.config
+C:\Users\Melquiceded Balbi\Documents\csharp\QuickToolsGUI\bin\Debug\QuickToolsGUI.exe
+C:\Users\Melquiceded Balbi\Documents\csharp\QuickToolsGUI\bin\Debug\QuickToolsGUI.pdb
+C:\Users\Melquiceded Balbi\Documents\csharp\QuickToolsGUI\obj\Debug\QuickToolsGUI.csproj.AssemblyReference.cache
+C:\Users\Melquiceded Balbi\Documents\csharp\QuickToolsGUI\obj\Debug\QuickToolsGUI.csproj.SuggestedBindingRedirects.cache
+C:\Users\Melquiceded Balbi\Documents\csharp\QuickToolsGUI\obj\Debug\QuickToolsGUI.MainWindow.resources
+C:\Users\Melquiceded Balbi\Documents\csharp\QuickToolsGUI\obj\Debug\QuickToolsGUI.Properties.Resources.resources
+C:\Users\Melquiceded Balbi\Documents\csharp\QuickToolsGUI\obj\Debug\QuickToolsGUI.csproj.GenerateResource.cache
+C:\Users\Melquiceded Balbi\Documents\csharp\QuickToolsGUI\obj\Debug\QuickToolsGUI.csproj.CoreCompileInputs.cache
+C:\Users\Melquiceded Balbi\Documents\csharp\QuickToolsGUI\obj\Debug\QuickToolsGUI.exe
+C:\Users\Melquiceded Balbi\Documents\csharp\QuickToolsGUI\obj\Debug\QuickToolsGUI.pdb
