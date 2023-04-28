@@ -41,8 +41,16 @@
             this.FileCompressFileOpt = new System.Windows.Forms.ToolStripMenuItem();
             this.FileDecompressFileOpt = new System.Windows.Forms.ToolStripMenuItem();
             this.FileEncryptOpt = new System.Windows.Forms.ToolStripMenuItem();
+            this.FileDecryptOpt = new System.Windows.Forms.ToolStripMenuItem();
+            this.MainMenuDataOpt = new System.Windows.Forms.ToolStripDropDownButton();
+            this.MainMenuInputOpt = new System.Windows.Forms.ToolStripDropDownButton();
+            this.MessageBoxInput = new System.Windows.Forms.ToolStripMenuItem();
             this.MainWindowConsoleBox = new System.Windows.Forms.RichTextBox();
-            this.decryptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MainMenuSettingsOpt = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.GeneralSettingsOpt = new System.Windows.Forms.ToolStripMenuItem();
             this.MainWindowTopMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,12 +62,19 @@
             this.MainWindowMaxBtn,
             this.MainWindowMiniBtn,
             this.toolStripSeparator,
-            this.MainMenuFileOpt});
+            this.MainMenuFileOpt,
+            this.toolStripSeparator1,
+            this.MainMenuDataOpt,
+            this.toolStripSeparator2,
+            this.MainMenuInputOpt,
+            this.toolStripSeparator3,
+            this.MainMenuSettingsOpt});
             this.MainWindowTopMenu.Location = new System.Drawing.Point(0, 0);
             this.MainWindowTopMenu.Name = "MainWindowTopMenu";
             this.MainWindowTopMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.MainWindowTopMenu.Size = new System.Drawing.Size(1062, 27);
             this.MainWindowTopMenu.TabIndex = 0;
+            this.MainWindowTopMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.MainWindowTopMenu_ItemClicked);
             // 
             // MainWindowCloseBtn
             // 
@@ -108,7 +123,7 @@
             this.FileCompressFileOpt,
             this.FileDecompressFileOpt,
             this.FileEncryptOpt,
-            this.decryptToolStripMenuItem});
+            this.FileDecryptOpt});
             this.MainMenuFileOpt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.14286F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MainMenuFileOpt.ForeColor = System.Drawing.Color.Black;
             this.MainMenuFileOpt.Name = "MainMenuFileOpt";
@@ -155,6 +170,39 @@
             this.FileEncryptOpt.Name = "FileEncryptOpt";
             this.FileEncryptOpt.Size = new System.Drawing.Size(180, 22);
             this.FileEncryptOpt.Text = "Encrypt";
+            this.FileEncryptOpt.Click += new System.EventHandler(this.FileEncryptOpt_Click);
+            // 
+            // FileDecryptOpt
+            // 
+            this.FileDecryptOpt.Name = "FileDecryptOpt";
+            this.FileDecryptOpt.Size = new System.Drawing.Size(180, 22);
+            this.FileDecryptOpt.Text = "Decrypt";
+            this.FileDecryptOpt.Click += new System.EventHandler(this.FileDecryptOpt_Click);
+            // 
+            // MainMenuDataOpt
+            // 
+            this.MainMenuDataOpt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.14286F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainMenuDataOpt.ForeColor = System.Drawing.Color.Black;
+            this.MainMenuDataOpt.Name = "MainMenuDataOpt";
+            this.MainMenuDataOpt.Size = new System.Drawing.Size(52, 24);
+            this.MainMenuDataOpt.Text = "Data";
+            // 
+            // MainMenuInputOpt
+            // 
+            this.MainMenuInputOpt.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MessageBoxInput});
+            this.MainMenuInputOpt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.14286F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainMenuInputOpt.ForeColor = System.Drawing.Color.Black;
+            this.MainMenuInputOpt.Name = "MainMenuInputOpt";
+            this.MainMenuInputOpt.Size = new System.Drawing.Size(52, 24);
+            this.MainMenuInputOpt.Text = "Input";
+            // 
+            // MessageBoxInput
+            // 
+            this.MessageBoxInput.Name = "MessageBoxInput";
+            this.MessageBoxInput.Size = new System.Drawing.Size(180, 22);
+            this.MessageBoxInput.Text = "Message Box";
+            this.MessageBoxInput.Click += new System.EventHandler(this.MessageBoxInput_Click);
             // 
             // MainWindowConsoleBox
             // 
@@ -172,13 +220,40 @@
             this.MainWindowConsoleBox.Size = new System.Drawing.Size(1062, 633);
             this.MainWindowConsoleBox.TabIndex = 3;
             this.MainWindowConsoleBox.Text = "";
+            this.MainWindowConsoleBox.TextChanged += new System.EventHandler(this.MainWindowConsoleBox_TextChanged);
             this.MainWindowConsoleBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindowConsoleBox_KeyDown);
             // 
-            // decryptToolStripMenuItem
+            // MainMenuSettingsOpt
             // 
-            this.decryptToolStripMenuItem.Name = "decryptToolStripMenuItem";
-            this.decryptToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.decryptToolStripMenuItem.Text = "Decrypt";
+            this.MainMenuSettingsOpt.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.GeneralSettingsOpt});
+            this.MainMenuSettingsOpt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.14286F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainMenuSettingsOpt.ForeColor = System.Drawing.Color.Black;
+            this.MainMenuSettingsOpt.Name = "MainMenuSettingsOpt";
+            this.MainMenuSettingsOpt.Size = new System.Drawing.Size(74, 24);
+            this.MainMenuSettingsOpt.Text = "Settings";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
+            // 
+            // GeneralSettingsOpt
+            // 
+            this.GeneralSettingsOpt.Name = "GeneralSettingsOpt";
+            this.GeneralSettingsOpt.Size = new System.Drawing.Size(185, 22);
+            this.GeneralSettingsOpt.Text = "General Settings";
+            this.GeneralSettingsOpt.Click += new System.EventHandler(this.GeneralSettingsOpt_Click);
             // 
             // MainWindow
             // 
@@ -218,7 +293,15 @@
         private System.Windows.Forms.ToolStripMenuItem FileSaveOpt;
         private System.Windows.Forms.ToolStripMenuItem FileCompressFileOpt;
         private System.Windows.Forms.ToolStripMenuItem FileDecompressFileOpt;
-        private System.Windows.Forms.ToolStripMenuItem decryptToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem FileDecryptOpt;
+        private System.Windows.Forms.ToolStripDropDownButton MainMenuDataOpt;
+        private System.Windows.Forms.ToolStripDropDownButton MainMenuInputOpt;
+        private System.Windows.Forms.ToolStripMenuItem MessageBoxInput;
+        private System.Windows.Forms.ToolStripDropDownButton MainMenuSettingsOpt;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem GeneralSettingsOpt;
     }
 }
 

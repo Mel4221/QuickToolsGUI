@@ -1,4 +1,5 @@
 ﻿using QuickTools.QIO;
+using QuickTools.QNet;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -132,7 +134,11 @@ namespace QuickToolsGUI
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();   
             openFileDialog.ShowDialog();
-            
+            if (!File.Exists(openFileDialog.FileName))
+            {
+                MessageBox.Show("Please Select a file");
+                return;
+            }
             QZip qZip = new QZip();
             try
             {
@@ -153,6 +159,11 @@ namespace QuickToolsGUI
             openFileDialog.ShowDialog();
 
             QZip qZip = new QZip();
+            if (!File.Exists(openFileDialog.FileName))
+            {
+                MessageBox.Show("Please Select a file");
+                return;
+            }
             try
             {
                 qZip.Decompress(openFileDialog.FileName);
@@ -163,6 +174,61 @@ namespace QuickToolsGUI
             {
                 MessageBox.Show("Something went wrong while compressing the file and it could not be compressed");
             }
+        }
+
+        private void FileEncryptOpt_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.ShowDialog();
+            if (!File.Exists(openFileDialog.FileName))
+            {
+                MessageBox.Show("Please Select a file");
+                return;
+            }
+            try
+            {
+                byte[] bytes = Binary.Reader(openFileDialog.FileName);
+                EntryBox entry = new EntryBox();
+                entry.Show();
+                
+                //MessageBox.Show();
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("The File Could not be readed due to: "+ex.Message);
+            }
+        }
+
+        private void FileDecryptOpt_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.ShowDialog();
+            if (!File.Exists(openFileDialog.FileName))
+            {
+                MessageBox.Show("Please Select a file");
+                return;
+            }
+        }
+
+        private void MainWindowTopMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void MainWindowConsoleBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MessageBoxInput_Click(object sender, EventArgs e)
+        {
+            EntryBox entry = new EntryBox();
+            entry.Show();
+        }
+
+        private void GeneralSettingsOpt_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

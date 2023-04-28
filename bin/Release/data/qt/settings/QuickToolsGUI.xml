@@ -1,0 +1,4 @@
+<Settings>
+  <Setting texbox="[texbox]some content" />
+  <Setting TextEntry="[TextEntry]this is some bullshit" />
+</Settings>
