@@ -52,7 +52,8 @@
     <ApplicationIcon>setting.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="QuickTools">
+    <Reference Include="QuickTools, Version=2.0.0.4, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\QuickTools\bin\Release\QuickTools.dll</HintPath>
     </Reference>
     <Reference Include="System" />

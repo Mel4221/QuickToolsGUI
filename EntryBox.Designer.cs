@@ -31,14 +31,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EntryBox));
             this.EntryBoxOkBtn = new System.Windows.Forms.Button();
             this.EntryBoxCancelBtn = new System.Windows.Forms.Button();
-            this.EntryTexBox = new System.Windows.Forms.TextBox();
+            this.EntryTexBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // EntryBoxOkBtn
             // 
             this.EntryBoxOkBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EntryBoxOkBtn.Location = new System.Drawing.Point(356, 158);
-            this.EntryBoxOkBtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.EntryBoxOkBtn.Location = new System.Drawing.Point(367, 210);
+            this.EntryBoxOkBtn.Margin = new System.Windows.Forms.Padding(6);
             this.EntryBoxOkBtn.Name = "EntryBoxOkBtn";
             this.EntryBoxOkBtn.Size = new System.Drawing.Size(268, 102);
             this.EntryBoxOkBtn.TabIndex = 1;
@@ -49,8 +49,8 @@
             // EntryBoxCancelBtn
             // 
             this.EntryBoxCancelBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.EntryBoxCancelBtn.Location = new System.Drawing.Point(642, 158);
-            this.EntryBoxCancelBtn.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.EntryBoxCancelBtn.Location = new System.Drawing.Point(653, 210);
+            this.EntryBoxCancelBtn.Margin = new System.Windows.Forms.Padding(6);
             this.EntryBoxCancelBtn.Name = "EntryBoxCancelBtn";
             this.EntryBoxCancelBtn.Size = new System.Drawing.Size(268, 102);
             this.EntryBoxCancelBtn.TabIndex = 2;
@@ -60,10 +60,11 @@
             // 
             // EntryTexBox
             // 
-            this.EntryTexBox.Location = new System.Drawing.Point(24, 32);
+            this.EntryTexBox.Location = new System.Drawing.Point(12, 12);
             this.EntryTexBox.Name = "EntryTexBox";
-            this.EntryTexBox.Size = new System.Drawing.Size(1219, 31);
+            this.EntryTexBox.Size = new System.Drawing.Size(1316, 174);
             this.EntryTexBox.TabIndex = 3;
+            this.EntryTexBox.Text = "";
             // 
             // EntryBox
             // 
@@ -76,18 +77,17 @@
             this.Controls.Add(this.EntryBoxOkBtn);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "EntryBox";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Info";
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.Button EntryBoxOkBtn;
         private System.Windows.Forms.Button EntryBoxCancelBtn;
-        private System.Windows.Forms.TextBox EntryTexBox;
+        private System.Windows.Forms.RichTextBox EntryTexBox;
     }
 }

@@ -1,4 +1,5 @@
-﻿using QuickTools.QIO;
+﻿using QuickTools.QCore;
+using QuickTools.QIO;
 using QuickTools.QNet;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace QuickToolsGUI
             this.TurnOffConsoleMode();
         }
 
+       
         public void TurnOnConsoleMode()
         {
             ConsoleModeStatus = true;   
@@ -68,6 +70,41 @@ namespace QuickToolsGUI
 
         private void FileOpen(object sender, EventArgs e)
         {
+
+          
+                    //Check if the worker is active 
+            if (!this.BackGroundWorker_A.IsBusy)
+            {
+                    // set the function that the BackGround will execute
+                this.ProcessToBeExecuted =(BackgroundWorker worker) => {
+                    this.MainMenuProgressBarsOpt.Value = 0;
+                    this.MainMenuProgressBarsOpt.Maximum = 100;
+                    int current, goal, number;
+                    string status;
+                    goal = 100;
+                    number = 0;
+                    for (current = 0; current<goal; current++)
+                    {
+                        //set the text progress to 
+                          status = Get.Status(current, goal-1);
+                         
+                        this.TextStatus = status;
+                        // just in case 
+                        try { number = int.Parse(status.Replace("%", "")); } catch { number = 0; };
+                        this.Status =  number;
+                        Thread.Sleep(100);
+                        //reports the progress 
+                        worker.ReportProgress(0);
+
+                    }
+                };
+                //start the background process
+                this.BackGroundWorker_A.RunWorkerAsync();
+            }
+
+
+
+            return; 
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.ShowDialog(); 
             string fileName = openFileDialog.FileName;
@@ -157,23 +194,28 @@ namespace QuickToolsGUI
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.ShowDialog();
+            string fileName = openFileDialog.FileName;
+
 
             QZip qZip = new QZip();
-            if (!File.Exists(openFileDialog.FileName))
+            if (!File.Exists(fileName))
             {
-                MessageBox.Show("Please Select a file");
+               // MessageBox.Show("Please Select a file");
                 return;
             }
-            try
-            {
-                qZip.Decompress(openFileDialog.FileName);
-                DialogResult dialogResult = MessageBox.Show("Would you like to delete the zip file ?", "Warning", MessageBoxButtons.YesNo);
-                if (dialogResult == DialogResult.Yes) { File.Delete(openFileDialog.FileName); }
-            }
-            catch
-            {
-                MessageBox.Show("Something went wrong while compressing the file and it could not be compressed");
-            }
+            //try
+            //{
+          
+                DialogResult dialogResult = MessageBox.Show($"Would you like to delete the zip file : {fileName}", "Warning", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes) { 
+                 // File.Move(fileName,Get.Path);
+                    File.Delete(Get.FileNameFromPath(fileName));
+                }
+            //}
+            //catch
+            //{
+            //    MessageBox.Show($"Something went wrong while compressing the file and it could not be compressed");
+            //}
         }
 
         private void FileEncryptOpt_Click(object sender, EventArgs e)
@@ -182,7 +224,7 @@ namespace QuickToolsGUI
             openFileDialog.ShowDialog();
             if (!File.Exists(openFileDialog.FileName))
             {
-                MessageBox.Show("Please Select a file");
+                //MessageBox.Show("Please Select a file");
                 return;
             }
             try
@@ -205,7 +247,7 @@ namespace QuickToolsGUI
             openFileDialog.ShowDialog();
             if (!File.Exists(openFileDialog.FileName))
             {
-                MessageBox.Show("Please Select a file");
+               // MessageBox.Show("Please Select a file");
                 return;
             }
         }
@@ -228,6 +270,45 @@ namespace QuickToolsGUI
 
         private void GeneralSettingsOpt_Click(object sender, EventArgs e)
         {
+            SettingsManagerWindow window = new SettingsManagerWindow();
+            window.Show(); 
+        }
+
+        public Action<BackgroundWorker> ProcessToBeExecuted;
+
+        public int Status;
+        public string TextStatus; 
+
+        private void BackGroundWorker_A_DoWork(object sender, DoWorkEventArgs e)
+        {
+            if(this.ProcessToBeExecuted != null)
+            {
+                 
+                this.ProcessToBeExecuted(this.BackGroundWorker_A);
+
+            }
+        }
+
+        private void BackGroundWorker_A_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            
+            if(this.MainMenuProgressBarsOpt.Value != 100)
+            {
+                this.MainMenuPorcentLabelOpt.Text = this.TextStatus;
+                this.MainMenuProgressBarsOpt.Value++;
+            }
+            
+             
+        }
+
+        private void BackGroundWorker_A_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            DialogResult reult =  MessageBox.Show("Task Completed!!!");
+            if(DialogResult.OK == reult)
+            {
+                this.MainMenuProgressBarsOpt.Value = 0;
+                this.MainMenuPorcentLabelOpt.Text = "0%"; 
+            }
 
         }
     }

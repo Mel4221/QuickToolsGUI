@@ -16,5 +16,30 @@ namespace QuickToolsGUI
         {
             InitializeComponent();
         }
+
+        private void SettingWindowSaveBtn_Click(object sender, EventArgs e)
+        {
+
+
+            this.Close();
+        }
+
+        private void SettingWindowCloseBtn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void SettingWindowLoadDefaultBtn_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("If you yes you will not be able to restore your settings","Warning", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //do something
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //do something else
+            }
+        }
     }
 }

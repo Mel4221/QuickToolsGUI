@@ -42,15 +42,18 @@
             this.FileDecompressFileOpt = new System.Windows.Forms.ToolStripMenuItem();
             this.FileEncryptOpt = new System.Windows.Forms.ToolStripMenuItem();
             this.FileDecryptOpt = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.MainMenuDataOpt = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.MainMenuInputOpt = new System.Windows.Forms.ToolStripDropDownButton();
             this.MessageBoxInput = new System.Windows.Forms.ToolStripMenuItem();
-            this.MainWindowConsoleBox = new System.Windows.Forms.RichTextBox();
-            this.MainMenuSettingsOpt = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.MainMenuSettingsOpt = new System.Windows.Forms.ToolStripDropDownButton();
             this.GeneralSettingsOpt = new System.Windows.Forms.ToolStripMenuItem();
+            this.MainWindowConsoleBox = new System.Windows.Forms.RichTextBox();
+            this.BackGroundWorker_A = new System.ComponentModel.BackgroundWorker();
+            this.MainMenuProgressBarsOpt = new System.Windows.Forms.ToolStripProgressBar();
+            this.MainMenuPorcentLabelOpt = new System.Windows.Forms.ToolStripLabel();
             this.MainWindowTopMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,7 +71,9 @@
             this.toolStripSeparator2,
             this.MainMenuInputOpt,
             this.toolStripSeparator3,
-            this.MainMenuSettingsOpt});
+            this.MainMenuSettingsOpt,
+            this.MainMenuProgressBarsOpt,
+            this.MainMenuPorcentLabelOpt});
             this.MainWindowTopMenu.Location = new System.Drawing.Point(0, 0);
             this.MainWindowTopMenu.Name = "MainWindowTopMenu";
             this.MainWindowTopMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -179,6 +184,11 @@
             this.FileDecryptOpt.Text = "Decrypt";
             this.FileDecryptOpt.Click += new System.EventHandler(this.FileDecryptOpt_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
             // MainMenuDataOpt
             // 
             this.MainMenuDataOpt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.14286F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -186,6 +196,11 @@
             this.MainMenuDataOpt.Name = "MainMenuDataOpt";
             this.MainMenuDataOpt.Size = new System.Drawing.Size(52, 24);
             this.MainMenuDataOpt.Text = "Data";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // MainMenuInputOpt
             // 
@@ -203,6 +218,28 @@
             this.MessageBoxInput.Size = new System.Drawing.Size(180, 22);
             this.MessageBoxInput.Text = "Message Box";
             this.MessageBoxInput.Click += new System.EventHandler(this.MessageBoxInput_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
+            // 
+            // MainMenuSettingsOpt
+            // 
+            this.MainMenuSettingsOpt.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.GeneralSettingsOpt});
+            this.MainMenuSettingsOpt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.14286F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainMenuSettingsOpt.ForeColor = System.Drawing.Color.Black;
+            this.MainMenuSettingsOpt.Name = "MainMenuSettingsOpt";
+            this.MainMenuSettingsOpt.Size = new System.Drawing.Size(74, 24);
+            this.MainMenuSettingsOpt.Text = "Settings";
+            // 
+            // GeneralSettingsOpt
+            // 
+            this.GeneralSettingsOpt.Name = "GeneralSettingsOpt";
+            this.GeneralSettingsOpt.Size = new System.Drawing.Size(185, 22);
+            this.GeneralSettingsOpt.Text = "General Settings";
+            this.GeneralSettingsOpt.Click += new System.EventHandler(this.GeneralSettingsOpt_Click);
             // 
             // MainWindowConsoleBox
             // 
@@ -223,37 +260,27 @@
             this.MainWindowConsoleBox.TextChanged += new System.EventHandler(this.MainWindowConsoleBox_TextChanged);
             this.MainWindowConsoleBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindowConsoleBox_KeyDown);
             // 
-            // MainMenuSettingsOpt
+            // BackGroundWorker_A
             // 
-            this.MainMenuSettingsOpt.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.GeneralSettingsOpt});
-            this.MainMenuSettingsOpt.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.14286F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MainMenuSettingsOpt.ForeColor = System.Drawing.Color.Black;
-            this.MainMenuSettingsOpt.Name = "MainMenuSettingsOpt";
-            this.MainMenuSettingsOpt.Size = new System.Drawing.Size(74, 24);
-            this.MainMenuSettingsOpt.Text = "Settings";
+            this.BackGroundWorker_A.WorkerReportsProgress = true;
+            this.BackGroundWorker_A.WorkerSupportsCancellation = true;
+            this.BackGroundWorker_A.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackGroundWorker_A_DoWork);
+            this.BackGroundWorker_A.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackGroundWorker_A_ProgressChanged);
+            this.BackGroundWorker_A.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackGroundWorker_A_RunWorkerCompleted);
             // 
-            // toolStripSeparator1
+            // MainMenuProgressBarsOpt
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            this.MainMenuProgressBarsOpt.Name = "MainMenuProgressBarsOpt";
+            this.MainMenuProgressBarsOpt.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.MainMenuProgressBarsOpt.Size = new System.Drawing.Size(100, 24);
             // 
-            // toolStripSeparator2
+            // MainMenuPorcentLabelOpt
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 27);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 27);
-            // 
-            // GeneralSettingsOpt
-            // 
-            this.GeneralSettingsOpt.Name = "GeneralSettingsOpt";
-            this.GeneralSettingsOpt.Size = new System.Drawing.Size(185, 22);
-            this.GeneralSettingsOpt.Text = "General Settings";
-            this.GeneralSettingsOpt.Click += new System.EventHandler(this.GeneralSettingsOpt_Click);
+            this.MainMenuPorcentLabelOpt.ForeColor = System.Drawing.Color.Black;
+            this.MainMenuPorcentLabelOpt.Name = "MainMenuPorcentLabelOpt";
+            this.MainMenuPorcentLabelOpt.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.MainMenuPorcentLabelOpt.Size = new System.Drawing.Size(23, 24);
+            this.MainMenuPorcentLabelOpt.Text = "0%";
             // 
             // MainWindow
             // 
@@ -302,6 +329,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem GeneralSettingsOpt;
+        private System.ComponentModel.BackgroundWorker BackGroundWorker_A;
+        private System.Windows.Forms.ToolStripProgressBar MainMenuProgressBarsOpt;
+        private System.Windows.Forms.ToolStripLabel MainMenuPorcentLabelOpt;
     }
 }
 

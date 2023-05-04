@@ -13,3 +13,4 @@ C:\Users\Melquiceded Balbi\Documents\csharp\QuickToolsGUI\bin\Release\QuickTools
 C:\Users\Melquiceded Balbi\Documents\csharp\QuickToolsGUI\obj\Release\QuickToolsGUI.csproj.CopyComplete
 C:\Users\Melquiceded Balbi\Documents\csharp\QuickToolsGUI\obj\Release\QuickToolsGUI.exe
 C:\Users\Melquiceded Balbi\Documents\csharp\QuickToolsGUI\obj\Release\QuickToolsGUI.pdb
+C:\Users\Melquiceded Balbi\Documents\csharp\QuickToolsGUI\obj\Release\QuickToolsGUI.SettingsManagerWindow.resources

@@ -319,7 +319,7 @@
             tools that started this Project.
             </summary>
         </member>
-        <member name="M:QuickTools.QCore.Get.OnlyChars(System.String)">
+        <member name="M:QuickTools.QCore.Get.FilterOnlyChars(System.String)">
             <summary>
             Very Slow method that only allows chars  to be print
             </summary>
@@ -1531,24 +1531,29 @@
             </summary>
             <param name="input">Input.</param>
         </member>
-        <member name="T:QuickTools.QConsole.CProgressBar">
+        <member name="T:QuickTools.QConsole.QProgressBar">
             <summary>
             Creates a ProgressBar that is used on console application
             </summary>
         </member>
-        <member name="F:QuickTools.QConsole.CProgressBar.DotsType">
+        <member name="F:QuickTools.QConsole.QProgressBar.DotsType">
             <summary>
             The type of the dots.
             </summary>
         </member>
-        <member name="M:QuickTools.QConsole.CProgressBar.Display(System.Int32,System.Int32)">
+        <member name="F:QuickTools.QConsole.QProgressBar.DotsCount">
+            <summary>
+            The dots count that will be displaid
+            </summary>
+        </member>
+        <member name="M:QuickTools.QConsole.QProgressBar.Display(System.Int32,System.Int32)">
             <summary>
             Display the specified current and goal.
             </summary>
             <param name="current">Current.</param>
             <param name="goal">Goal.</param>
         </member>
-        <member name="M:QuickTools.QConsole.CProgressBar.Display(System.Int32,System.Int32,System.String)">
+        <member name="M:QuickTools.QConsole.QProgressBar.Display(System.Int32,System.Int32,System.String)">
             <summary>
             Display the specified current, goal and dots.
             </summary>
@@ -1556,7 +1561,7 @@
             <param name="goal">Goal.</param>
             <param name="dots">Dots.</param>
         </member>
-        <member name="M:QuickTools.QConsole.CProgressBar.Display(System.Int32,System.Int32,System.String,System.String)">
+        <member name="M:QuickTools.QConsole.QProgressBar.Display(System.Int32,System.Int32,System.String,System.String)">
             <summary>
             Display the specified current, goal, dots and label.
             </summary>
@@ -1565,7 +1570,7 @@
             <param name="dots">Dots.</param>
             <param name="label">Label.</param>
         </member>
-        <member name="M:QuickTools.QConsole.CProgressBar.Display(System.Int32,System.Int32,System.String,System.String,System.Boolean)">
+        <member name="M:QuickTools.QConsole.QProgressBar.Display(System.Int32,System.Int32,System.String,System.String,System.Boolean)">
             <summary>
             Display the specified current, goal, dots, label and noStatusPorcent.
             </summary>
@@ -1574,62 +1579,6 @@
             <param name="dots">Dots.</param>
             <param name="label">Label.</param>
             <param name="noStatusPorcent">If set to <c>true</c> no status porcent.</param>
-        </member>
-        <member name="T:QuickTools.QConsole.ArrowKey">
-            <summary>
-            This Class in sintended to improve the Options Class
-            which seems to me  really anticated  and this one provides movements
-            with all the arrow keys
-            </summary>
-        </member>
-        <member name="F:QuickTools.QConsole.ArrowKey.X">
-            <summary>
-            The x.
-            </summary>
-        </member>
-        <member name="F:QuickTools.QConsole.ArrowKey.Y">
-            <summary>
-            The y.
-            </summary>
-        </member>
-        <member name="M:QuickTools.QConsole.ArrowKey.Up">
-            <summary>
-            This fields has direct acces but as it returns an array 
-            the method GetLocation  can provide the number only in an object type 
-            </summary>
-        </member>
-        <member name="M:QuickTools.QConsole.ArrowKey.Capture(System.String)">
-            <summary>
-            Capture the specified condition.
-            </summary>
-            <param name="condition">Condition.</param>
-        </member>
-        <member name="M:QuickTools.QConsole.ArrowKey.Capture(System.String,System.Action)">
-            <summary>
-            Capture the specified condition and triguer an action 
-            </summary>
-            <param name="condition">Condition.</param>
-            <param name="triguer">Triguer.</param>
-        </member>
-        <member name="M:QuickTools.QConsole.ArrowKey.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:QuickTools.ArrowKey"/> class.
-            </summary>
-        </member>
-        <member name="M:QuickTools.QConsole.ArrowKey.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Initializes a new instance of the <see cref="T:QuickTools.ArrowKey"/> class.
-            </summary>
-            <param name="intitialX">Intitial x.</param>
-            <param name="initialY">Initial y.</param>
-        </member>
-        <member name="M:QuickTools.QConsole.ArrowKey.#ctor(System.Int32,System.Int32,System.Boolean)">
-            <summary>
-            Initializes a new instance of the <see cref="T:QuickTools.ArrowKey"/> class.
-            </summary>
-            <param name="intitialX">Intitial x.</param>
-            <param name="initialY">Initial y.</param>
-            <param name="SwitchUpDown">If set to <c>true</c> switch up down.</param>
         </member>
         <member name="T:QuickTools.QConsole.LoopInput">
              <summary>
@@ -2935,12 +2884,6 @@
             <param name="from">From.</param>
             <param name="until">Until.</param>
         </member>
-        <member name="M:QuickTools.QIO.Binary.ReadBytes(System.String)">
-            <summary>
-            Reads the bytes.
-            </summary>
-            <param name="fileName">File name.</param>
-        </member>
         <member name="M:QuickTools.QIO.Binary.Print(System.Int64,System.Int64)">
             <summary>
             Print the specified current proses  remaining but only if <see cref="P:QuickTools.QIO.Binary.AllowDebugger"/>.
@@ -3002,6 +2945,11 @@
             </summary>
             <value><c>true</c> if allow debugger; otherwise, <c>false</c>.</value>
         </member>
+        <member name="F:QuickTools.QIO.Binary.AllowListAllocation">
+            <summary>
+            The allow list allocation.
+            </summary>
+        </member>
         <member name="F:QuickTools.QIO.Binary.DebuggerStatusMessage">
             <summary>
             Gets or sets the debugger status message and as default should return just Reading + CurrentPorcent% if <see cref="P:QuickTools.QIO.Binary.AllowDebugger"/> is set to true
@@ -3032,9 +2980,19 @@
             </summary>
             <value>The speed unit.</value>
         </member>
+        <member name="F:QuickTools.QIO.Binary.FileHash">
+            <summary>
+            It provide the file hash 
+            </summary>
+        </member>
         <member name="F:QuickTools.QIO.Binary.AllowMegabytesAsDefault">
             <summary>
             The allow megabytes as default.
+            </summary>
+        </member>
+        <member name="F:QuickTools.QIO.Binary.StatusText">
+            <summary>
+            Returns the status on a text format 
             </summary>
         </member>
         <member name="F:QuickTools.QIO.Binary.CallBackAction">
@@ -3047,11 +3005,6 @@
             This function returns a byte as it reads it 
             </summary>
         </member>
-        <member name="M:QuickTools.QIO.Binary.#ctor">
-            <summary>
-            Initializes a new instance of the <see cref="T:QuickTools.QIO.Binary"/> class.
-            </summary>
-        </member>
         <member name="M:QuickTools.QIO.Binary.Bind(System.Byte[],System.Byte[])">
             <summary>
             Bind the specified bufferA and bufferB.
@@ -3059,6 +3012,41 @@
             <returns>The bind.</returns>
             <param name="bufferA">Buffer a.</param>
             <param name="bufferB">Buffer b.</param>
+        </member>
+        <member name="M:QuickTools.QIO.Binary.ReadBytes(System.String)">
+            <summary>
+            Reads the bytes.
+            </summary>
+            <param name="fileName">File name.</param>
+        </member>
+        <member name="M:QuickTools.QIO.Binary.IsCorrupted(System.String,System.String)">
+            <summary>
+            This module allows you to make sure that files are equal no matter the size from them
+            </summary>
+            <returns><c>true</c>, if corrupted was ised, <c>false</c> otherwise.</returns>
+            <param name="file">File.</param>
+            <param name="secondFile">Second file.</param>
+        </member>
+        <member name="M:QuickTools.QIO.Binary.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:QuickTools.QIO.Binary"/> class.
+            </summary>
+        </member>
+        <member name="F:QuickTools.QIO.Binary.disposedValue">
+            <summary>
+            The disposed value.
+            </summary>
+        </member>
+        <member name="M:QuickTools.QIO.Binary.Dispose(System.Boolean)">
+            <summary>
+            Dispose the specified disposing.
+            </summary>
+            <param name="disposing">If set to <c>true</c> disposing.</param>
+        </member>
+        <member name="M:QuickTools.QIO.Binary.Dispose">
+            <summary>
+            Releases all resource used by the <see cref="T:QuickTools.QIO.Binary"/> object.
+            </summary>
         </member>
         <member name="T:QuickTools.QIO.FileDumper">
             <summary>
@@ -3498,6 +3486,11 @@
         <member name="F:QuickTools.QIO.QBox.OperatorClose">
             <summary>
             The operator close.
+            </summary>
+        </member>
+        <member name="F:QuickTools.QIO.QBox.AllowDebugger">
+            <summary>
+            The allow debugger.
             </summary>
         </member>
         <member name="F:QuickTools.QIO.QBox.FileLength">
