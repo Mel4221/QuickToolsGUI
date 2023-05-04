@@ -67,44 +67,45 @@ namespace QuickToolsGUI
         }
         
         public string CurrentFile { get; set; } 
+        void ProperSettupForBackGroundWorker()
+        {
+           
 
+                   //Check if the worker is active 
+           if (!this.BackGroundWorker_A.IsBusy)
+           {
+                   // set the function that the BackGround will execute
+               this.ProcessToBeExecuted =(BackgroundWorker worker) => {
+                   this.MainMenuProgressBarsOpt.Value = 0;
+                   this.MainMenuProgressBarsOpt.Maximum = 100;
+                   int current, goal, number;
+                   string status;
+                   goal = 100;
+                   number = 0;
+                   for (current = 0; current<goal; current++)
+                   {
+                       //set the text progress to 
+                         status = Get.Status(current, goal-1);
+
+                       this.TextStatus = status;
+                       // just in case 
+                       try { number = int.Parse(status.Replace("%", "")); } catch { number = 0; };
+                       this.Status =  number;
+                       Thread.Sleep(100);
+                       //reports the progress 
+                       worker.ReportProgress(0);
+
+                   }
+               };
+               //start the background process
+               this.BackGroundWorker_A.RunWorkerAsync();
+           }
+ 
+
+        }
         private void FileOpen(object sender, EventArgs e)
         {
-
-          
-                    //Check if the worker is active 
-            if (!this.BackGroundWorker_A.IsBusy)
-            {
-                    // set the function that the BackGround will execute
-                this.ProcessToBeExecuted =(BackgroundWorker worker) => {
-                    this.MainMenuProgressBarsOpt.Value = 0;
-                    this.MainMenuProgressBarsOpt.Maximum = 100;
-                    int current, goal, number;
-                    string status;
-                    goal = 100;
-                    number = 0;
-                    for (current = 0; current<goal; current++)
-                    {
-                        //set the text progress to 
-                          status = Get.Status(current, goal-1);
-                         
-                        this.TextStatus = status;
-                        // just in case 
-                        try { number = int.Parse(status.Replace("%", "")); } catch { number = 0; };
-                        this.Status =  number;
-                        Thread.Sleep(100);
-                        //reports the progress 
-                        worker.ReportProgress(0);
-
-                    }
-                };
-                //start the background process
-                this.BackGroundWorker_A.RunWorkerAsync();
-            }
-
-
-
-            return; 
+           
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.ShowDialog(); 
             string fileName = openFileDialog.FileName;
