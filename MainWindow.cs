@@ -22,6 +22,7 @@ namespace QuickToolsGUI
         { 
             InitializeComponent();
             this.TurnOffConsoleMode();
+            
         }
 
        
@@ -63,7 +64,8 @@ namespace QuickToolsGUI
 
         private void MainWindowMiniBtn_Click(object sender, EventArgs e)
         {
-            this.WindowState = FormWindowState.Maximized;
+             this.WindowState = FormWindowState.Minimized;
+           // this.Hide();
         }
         
         public string CurrentFile { get; set; } 
@@ -311,6 +313,18 @@ namespace QuickToolsGUI
                 this.MainMenuPorcentLabelOpt.Text = "0%"; 
             }
 
+        }
+
+        private void MainWindowConsoleBox_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (!MainWindowConsoleBox.ClientRectangle.Contains(e.Location))
+            {
+                MainWindowConsoleBox.Capture = false;
+            }
+            else if (!MainWindowConsoleBox.Capture)
+            {
+                MainWindowConsoleBox.Capture = true;
+            }
         }
     }
 }

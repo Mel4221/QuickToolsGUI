@@ -9,3 +9,19 @@ C:\Users\Melquiceded Balbi\Documents\csharp\QuickToolsGUI\obj\Debug\QuickToolsGU
 C:\Users\Melquiceded Balbi\Documents\csharp\QuickToolsGUI\obj\Debug\QuickToolsGUI.csproj.CoreCompileInputs.cache
 C:\Users\Melquiceded Balbi\Documents\csharp\QuickToolsGUI\obj\Debug\QuickToolsGUI.exe
 C:\Users\Melquiceded Balbi\Documents\csharp\QuickToolsGUI\obj\Debug\QuickToolsGUI.pdb
+C:\Users\William\Desktop\C#\QuickToolsGUI\bin\Debug\QuickToolsGUI.exe.config
+C:\Users\William\Desktop\C#\QuickToolsGUI\bin\Debug\QuickToolsGUI.exe
+C:\Users\William\Desktop\C#\QuickToolsGUI\bin\Debug\QuickToolsGUI.pdb
+C:\Users\William\Desktop\C#\QuickToolsGUI\bin\Debug\QuickTools.dll
+C:\Users\William\Desktop\C#\QuickToolsGUI\bin\Debug\QuickTools.xml
+C:\Users\William\Desktop\C#\QuickToolsGUI\obj\Debug\QuickToolsGUI.csproj.AssemblyReference.cache
+C:\Users\William\Desktop\C#\QuickToolsGUI\obj\Debug\QuickToolsGUI.csproj.SuggestedBindingRedirects.cache
+C:\Users\William\Desktop\C#\QuickToolsGUI\obj\Debug\QuickToolsGUI.MainWindow.resources
+C:\Users\William\Desktop\C#\QuickToolsGUI\obj\Debug\QuickToolsGUI.Properties.Resources.resources
+C:\Users\William\Desktop\C#\QuickToolsGUI\obj\Debug\QuickToolsGUI.EntryBox.resources
+C:\Users\William\Desktop\C#\QuickToolsGUI\obj\Debug\QuickToolsGUI.SettingsManagerWindow.resources
+C:\Users\William\Desktop\C#\QuickToolsGUI\obj\Debug\QuickToolsGUI.csproj.GenerateResource.cache
+C:\Users\William\Desktop\C#\QuickToolsGUI\obj\Debug\QuickToolsGUI.csproj.CoreCompileInputs.cache
+C:\Users\William\Desktop\C#\QuickToolsGUI\obj\Debug\QuickToolsGUI.csproj.CopyComplete
+C:\Users\William\Desktop\C#\QuickToolsGUI\obj\Debug\QuickToolsGUI.exe
+C:\Users\William\Desktop\C#\QuickToolsGUI\obj\Debug\QuickToolsGUI.pdb

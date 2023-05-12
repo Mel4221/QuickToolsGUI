@@ -50,10 +50,10 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.MainMenuSettingsOpt = new System.Windows.Forms.ToolStripDropDownButton();
             this.GeneralSettingsOpt = new System.Windows.Forms.ToolStripMenuItem();
-            this.MainWindowConsoleBox = new System.Windows.Forms.RichTextBox();
-            this.BackGroundWorker_A = new System.ComponentModel.BackgroundWorker();
             this.MainMenuProgressBarsOpt = new System.Windows.Forms.ToolStripProgressBar();
             this.MainMenuPorcentLabelOpt = new System.Windows.Forms.ToolStripLabel();
+            this.MainWindowConsoleBox = new System.Windows.Forms.RichTextBox();
+            this.BackGroundWorker_A = new System.ComponentModel.BackgroundWorker();
             this.MainWindowTopMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -61,9 +61,6 @@
             // 
             this.MainWindowTopMenu.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.MainWindowTopMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MainWindowCloseBtn,
-            this.MainWindowMaxBtn,
-            this.MainWindowMiniBtn,
             this.toolStripSeparator,
             this.MainMenuFileOpt,
             this.toolStripSeparator1,
@@ -73,45 +70,51 @@
             this.toolStripSeparator3,
             this.MainMenuSettingsOpt,
             this.MainMenuProgressBarsOpt,
-            this.MainMenuPorcentLabelOpt});
+            this.MainMenuPorcentLabelOpt,
+            this.MainWindowCloseBtn,
+            this.MainWindowMiniBtn,
+            this.MainWindowMaxBtn});
             this.MainWindowTopMenu.Location = new System.Drawing.Point(0, 0);
             this.MainWindowTopMenu.Name = "MainWindowTopMenu";
-            this.MainWindowTopMenu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.MainWindowTopMenu.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.MainWindowTopMenu.Size = new System.Drawing.Size(1062, 27);
             this.MainWindowTopMenu.TabIndex = 0;
             this.MainWindowTopMenu.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.MainWindowTopMenu_ItemClicked);
             // 
             // MainWindowCloseBtn
             // 
+            this.MainWindowCloseBtn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.MainWindowCloseBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.MainWindowCloseBtn.Image = ((System.Drawing.Image)(resources.GetObject("MainWindowCloseBtn.Image")));
             this.MainWindowCloseBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.MainWindowCloseBtn.Name = "MainWindowCloseBtn";
-            this.MainWindowCloseBtn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.MainWindowCloseBtn.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.MainWindowCloseBtn.Size = new System.Drawing.Size(24, 24);
-            this.MainWindowCloseBtn.Text = "toolStripButton3";
+            this.MainWindowCloseBtn.Text = "Close";
             this.MainWindowCloseBtn.Click += new System.EventHandler(this.MainWindowCloseBtn_Click);
             // 
             // MainWindowMaxBtn
             // 
+            this.MainWindowMaxBtn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.MainWindowMaxBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.MainWindowMaxBtn.Image = ((System.Drawing.Image)(resources.GetObject("MainWindowMaxBtn.Image")));
             this.MainWindowMaxBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.MainWindowMaxBtn.Name = "MainWindowMaxBtn";
-            this.MainWindowMaxBtn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.MainWindowMaxBtn.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.MainWindowMaxBtn.Size = new System.Drawing.Size(24, 24);
-            this.MainWindowMaxBtn.Text = "toolStripButton2";
+            this.MainWindowMaxBtn.Text = "Maximize";
             this.MainWindowMaxBtn.Click += new System.EventHandler(this.MainWindowMaxBtn_Click);
             // 
             // MainWindowMiniBtn
             // 
+            this.MainWindowMiniBtn.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.MainWindowMiniBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.MainWindowMiniBtn.Image = ((System.Drawing.Image)(resources.GetObject("MainWindowMiniBtn.Image")));
             this.MainWindowMiniBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.MainWindowMiniBtn.Name = "MainWindowMiniBtn";
-            this.MainWindowMiniBtn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.MainWindowMiniBtn.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.MainWindowMiniBtn.Size = new System.Drawing.Size(24, 24);
-            this.MainWindowMiniBtn.Text = "toolStripButton1";
+            this.MainWindowMiniBtn.Text = "Minimize";
             this.MainWindowMiniBtn.Click += new System.EventHandler(this.MainWindowMiniBtn_Click);
             // 
             // toolStripSeparator
@@ -215,7 +218,7 @@
             // MessageBoxInput
             // 
             this.MessageBoxInput.Name = "MessageBoxInput";
-            this.MessageBoxInput.Size = new System.Drawing.Size(180, 22);
+            this.MessageBoxInput.Size = new System.Drawing.Size(167, 22);
             this.MessageBoxInput.Text = "Message Box";
             this.MessageBoxInput.Click += new System.EventHandler(this.MessageBoxInput_Click);
             // 
@@ -241,33 +244,6 @@
             this.GeneralSettingsOpt.Text = "General Settings";
             this.GeneralSettingsOpt.Click += new System.EventHandler(this.GeneralSettingsOpt_Click);
             // 
-            // MainWindowConsoleBox
-            // 
-            this.MainWindowConsoleBox.AcceptsTab = true;
-            this.MainWindowConsoleBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.MainWindowConsoleBox.BackColor = System.Drawing.Color.Black;
-            this.MainWindowConsoleBox.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.MainWindowConsoleBox.EnableAutoDragDrop = true;
-            this.MainWindowConsoleBox.ForeColor = System.Drawing.Color.Lime;
-            this.MainWindowConsoleBox.Location = new System.Drawing.Point(0, 28);
-            this.MainWindowConsoleBox.Name = "MainWindowConsoleBox";
-            this.MainWindowConsoleBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-            this.MainWindowConsoleBox.Size = new System.Drawing.Size(1062, 633);
-            this.MainWindowConsoleBox.TabIndex = 3;
-            this.MainWindowConsoleBox.Text = "";
-            this.MainWindowConsoleBox.TextChanged += new System.EventHandler(this.MainWindowConsoleBox_TextChanged);
-            this.MainWindowConsoleBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindowConsoleBox_KeyDown);
-            // 
-            // BackGroundWorker_A
-            // 
-            this.BackGroundWorker_A.WorkerReportsProgress = true;
-            this.BackGroundWorker_A.WorkerSupportsCancellation = true;
-            this.BackGroundWorker_A.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackGroundWorker_A_DoWork);
-            this.BackGroundWorker_A.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackGroundWorker_A_ProgressChanged);
-            this.BackGroundWorker_A.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackGroundWorker_A_RunWorkerCompleted);
-            // 
             // MainMenuProgressBarsOpt
             // 
             this.MainMenuProgressBarsOpt.Name = "MainMenuProgressBarsOpt";
@@ -281,6 +257,35 @@
             this.MainMenuPorcentLabelOpt.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.MainMenuPorcentLabelOpt.Size = new System.Drawing.Size(23, 24);
             this.MainMenuPorcentLabelOpt.Text = "0%";
+            // 
+            // MainWindowConsoleBox
+            // 
+            this.MainWindowConsoleBox.AcceptsTab = true;
+            this.MainWindowConsoleBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.MainWindowConsoleBox.BackColor = System.Drawing.Color.Black;
+            this.MainWindowConsoleBox.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.MainWindowConsoleBox.EnableAutoDragDrop = true;
+            this.MainWindowConsoleBox.ForeColor = System.Drawing.Color.Lime;
+            this.MainWindowConsoleBox.Location = new System.Drawing.Point(0, 28);
+            this.MainWindowConsoleBox.Name = "MainWindowConsoleBox";
+            this.MainWindowConsoleBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.MainWindowConsoleBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
+            this.MainWindowConsoleBox.Size = new System.Drawing.Size(1062, 633);
+            this.MainWindowConsoleBox.TabIndex = 3;
+            this.MainWindowConsoleBox.Text = "";
+            this.MainWindowConsoleBox.TextChanged += new System.EventHandler(this.MainWindowConsoleBox_TextChanged);
+            this.MainWindowConsoleBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindowConsoleBox_KeyDown);
+            this.MainWindowConsoleBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainWindowConsoleBox_MouseMove);
+            // 
+            // BackGroundWorker_A
+            // 
+            this.BackGroundWorker_A.WorkerReportsProgress = true;
+            this.BackGroundWorker_A.WorkerSupportsCancellation = true;
+            this.BackGroundWorker_A.DoWork += new System.ComponentModel.DoWorkEventHandler(this.BackGroundWorker_A_DoWork);
+            this.BackGroundWorker_A.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.BackGroundWorker_A_ProgressChanged);
+            this.BackGroundWorker_A.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.BackGroundWorker_A_RunWorkerCompleted);
             // 
             // MainWindow
             // 
