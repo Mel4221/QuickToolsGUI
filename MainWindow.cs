@@ -1,6 +1,7 @@
 ﻿using QuickTools.QCore;
 using QuickTools.QIO;
 using QuickTools.QNet;
+using QuickTools.QSecurity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +18,14 @@ namespace QuickToolsGUI
 {
     public partial class MainWindow : Form
     {
+        private string _DialogText;
+        private byte[] _Buffer;
+        private Action CurrentAction;
+        private string TextStatus;
+        private int Status;
+        public string CurrentFile { get; set; }
+
+
         public bool ConsoleModeStatus { get; set; } 
         public MainWindow()
         { 
@@ -68,7 +77,6 @@ namespace QuickToolsGUI
            // this.Hide();
         }
         
-        public string CurrentFile { get; set; } 
         void ProperSettupForBackGroundWorker()
         {
            
@@ -107,13 +115,21 @@ namespace QuickToolsGUI
         }
         private void FileOpen(object sender, EventArgs e)
         {
-           
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.ShowDialog(); 
-            string fileName = openFileDialog.FileName;
+
+            OpenFileDialog dialog = new OpenFileDialog();
+         
+            //this.DialogMessage = "Select The Program That you Want to write the pack on ";
+
+            this._DialogText = "Select The File ";
+            dialog.Title = this._DialogText;
+            dialog.Filter = $"All files (*.*)|*.*|{this._DialogText}(*.txt)|*.txt";
+            dialog.FilterIndex = 2;
+
+            dialog.ShowDialog();
+            string fileName = dialog.FileName;
             if (!File.Exists(fileName))
             {
-                MessageBox.Show("The File Could not be found or not exist");
+              //  MessageBox.Show("The File Could not be found or not exist");
                 return; 
             }
             this.CurrentFile = fileName;
@@ -124,7 +140,7 @@ namespace QuickToolsGUI
             }
             catch
             {
-                MessageBox.Show("It Looks like either the file is too big or not supported");
+              MessageBox.Show("It Looks like either the file is too big or not supported");
                 
             }
             //MessageBox.Show(fileName); 
@@ -151,14 +167,18 @@ namespace QuickToolsGUI
                 MessageBox.Show("Please type something to save");
                 return; 
             }
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.ShowDialog();
-            string fileName = saveFileDialog.FileName;  
+                      OpenFileDialog dialog = new OpenFileDialog();
+         
+            //this.DialogMessage = "Select The Program That you Want to write the pack on ";
 
-            if (fileName.IndexOf('.') == -1)
-            {
-                fileName+=".txt"; 
-            }
+            this._DialogText = "Save File ";
+            dialog.Title = this._DialogText;
+            dialog.Filter = $"All files (*.*)|*.*|{this._DialogText}(*.txt)|*.txt";
+            dialog.FilterIndex = 2;
+
+            dialog.ShowDialog();
+            string fileName = dialog.FileName;
+ 
             try
             {
                 Writer.Write(fileName, this.MainWindowConsoleBox.Text);
@@ -195,9 +215,17 @@ namespace QuickToolsGUI
 
         private void FileDecompressFileOpt_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.ShowDialog();
-            string fileName = openFileDialog.FileName;
+            OpenFileDialog dialog = new OpenFileDialog();
+
+            //this.DialogMessage = "Select The Program That you Want to write the pack on ";
+
+            this._DialogText = "Save File ";
+            dialog.Title = this._DialogText;
+            dialog.Filter = $"All files (*.*)|*.*|{this._DialogText}(*.zip)|*.zip";
+            dialog.FilterIndex = 2;
+
+            dialog.ShowDialog();
+            string fileName = dialog.FileName;
 
 
             QZip qZip = new QZip();
@@ -223,19 +251,35 @@ namespace QuickToolsGUI
 
         private void FileEncryptOpt_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.ShowDialog();
-            if (!File.Exists(openFileDialog.FileName))
-            {
-                //MessageBox.Show("Please Select a file");
-                return;
-            }
+
+            OpenFileDialog dialog = new OpenFileDialog();
+
+            //this.DialogMessage = "Select The Program That you Want to write the pack on ";
+
+            this._DialogText = "Select The File ";
+            dialog.Title = this._DialogText;
+            dialog.Filter = $"All files (*.*)|*.*|{this._DialogText}(*.txt)|*.txt";
+            dialog.FilterIndex = 2;
+
+         
+        
             try
             {
-                byte[] bytes = Binary.Reader(openFileDialog.FileName);
-                EntryBox entry = new EntryBox();
-                entry.Show();
-                
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBox.Show("Do you want to delete the other file after","Info",MessageBoxButtons.YesNo); 
+
+                   this._Buffer =  Binary.Reader(dialog.FileName);
+                    this.CurrentFile = dialog.FileName; 
+                    this.ShowPrivateInput();
+                    this.CurrentAction = () => {
+                     byte[] bytes =    new Secure().Encrypt(this._Buffer,new Secure().CreatePassword(this.PrivatePasswordInput.Text), new Secure().CreatePassword(this.PrivatePasswordInput.Text));
+                        Binary.Writer(this.CurrentFile,bytes);
+                    }; 
+                    // MainWindowConsoleBox.
+                }
+
+
                 //MessageBox.Show();
             }
             catch(Exception ex)
@@ -244,15 +288,52 @@ namespace QuickToolsGUI
             }
         }
 
+        private void HidePrivateInput()
+        {
+            this.PrivatePasswordInputBtn.Visible = false;
+            this.PrivatePasswordInput.Visible = false;
+            this.PrivatePasswordInpuCancellBtn.Visible = false;
+        }
+        private void ShowPrivateInput()
+        {
+            this.PrivatePasswordInput.Visible = true;
+            this.PrivatePasswordInputBtn.Visible = true;
+            this.PrivatePasswordInpuCancellBtn.Visible = true;
+        }
         private void FileDecryptOpt_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.ShowDialog();
-            if (!File.Exists(openFileDialog.FileName))
+            OpenFileDialog dialog = new OpenFileDialog();
+
+            //this.DialogMessage = "Select The Program That you Want to write the pack on ";
+
+            this._DialogText = "Select The File ";
+            dialog.Title = this._DialogText;
+            dialog.Filter = $"All files (*.*)|*.*|{this._DialogText}(*.txt)|*.txt";
+            dialog.FilterIndex = 2;
+            try
             {
-               // MessageBox.Show("Please Select a file");
-                return;
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    MessageBox.Show("Do you want to delete the other file after", "Info", MessageBoxButtons.YesNo);
+
+                    this._Buffer = Binary.Reader(dialog.FileName);
+                    this.CurrentFile = dialog.FileName;
+                    this.ShowPrivateInput();
+                    this.CurrentAction = () => {
+                        string bytes = new Secure().Decrypt(this._Buffer, new Secure().CreatePassword(this.PrivatePasswordInput.Text), new Secure().CreatePassword(this.PrivatePasswordInput.Text));
+                        Writer.Write(this.CurrentFile, bytes); 
+                    };
+                    // MainWindowConsoleBox.
+                }
+
+
+                //MessageBox.Show();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The File Could not be readed due to: " + ex.Message);
+            }
+
         }
 
         private void MainWindowTopMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
@@ -279,8 +360,7 @@ namespace QuickToolsGUI
 
         public Action<BackgroundWorker> ProcessToBeExecuted;
 
-        public int Status;
-        public string TextStatus; 
+        
 
         private void BackGroundWorker_A_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -325,6 +405,35 @@ namespace QuickToolsGUI
             {
                 MainWindowConsoleBox.Capture = true;
             }
+        }
+
+        private void HelpBtn_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Mel4221/QuickToolsGUI");
+        }
+
+        private void MainMenuFileOpt_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PrivatePasswordInpuCancellBtn_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void PrivatePasswordInputBtn_Click(object sender, EventArgs e)
+        {
+            if(this.CurrentAction != null && PrivatePasswordInput.Text != "") {
+                this.CurrentAction();
+                this.HidePrivateInput();
+                return;
+            }
+        }
+
+        private void PrivatePasswordInput_TextChanged(object sender, EventArgs e)
+        {
+            this.PrivatePasswordInput.PasswordChar = '*';
         }
     }
 }
