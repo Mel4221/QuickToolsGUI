@@ -20,9 +20,11 @@ namespace QuickToolsGUI
     {
         private string _DialogText;
         private byte[] _Buffer;
-        private Action CurrentAction;
         private string TextStatus;
         private int Status;
+        private InputBox Box;
+        public Action<string> CurrentAction;
+        public Action CurrentActionChanged;
         public string CurrentFile { get; set; }
 
 
@@ -37,17 +39,19 @@ namespace QuickToolsGUI
        
         public void TurnOnConsoleMode()
         {
-            ConsoleModeStatus = true;   
+            this.ConsoleModeStatus = true;   
             this.MainWindowConsoleBox.Visible = true;
             this.MainWindowConsoleBox.ReadOnly = false;
             this.MainWindowConsoleBox.UseWaitCursor = true;
+            this.CloseConsoleBtn.Visible = true; 
         }
         public void TurnOffConsoleMode()
         {
             this.ConsoleModeStatus= false;  
             this.MainWindowConsoleBox.ReadOnly = true;
             this.MainWindowConsoleBox.Visible = false;
-            this.MainWindowConsoleBox.UseWaitCursor = false; 
+            this.MainWindowConsoleBox.UseWaitCursor = false;
+            this.CloseConsoleBtn.Visible = false;
         }
 
         private void MainWindowCloseBtn_Click(object sender, EventArgs e)
@@ -85,7 +89,7 @@ namespace QuickToolsGUI
            if (!this.BackGroundWorker_A.IsBusy)
            {
                    // set the function that the BackGround will execute
-               this.ProcessToBeExecuted =(BackgroundWorker worker) => {
+                   this.ProcessToBeExecuted =(BackgroundWorker worker) => {
                    this.MainMenuProgressBarsOpt.Value = 0;
                    this.MainMenuProgressBarsOpt.Maximum = 100;
                    int current, goal, number;
@@ -162,12 +166,12 @@ namespace QuickToolsGUI
 
         private void FileSaveOpt_Click(object sender, EventArgs e)
         {
-            if (this.MainWindowConsoleBox.Text == "" || this.MainWindowConsoleBox.Text == "Type Something")
-            {
-                MessageBox.Show("Please type something to save");
-                return; 
-            }
-                      OpenFileDialog dialog = new OpenFileDialog();
+            //if (this.MainWindowConsoleBox.Text == "" || this.MainWindowConsoleBox.Text == "Type Something")
+            //{
+            //    MessageBox.Show("Please type something to save");
+            //    return; 
+            //}
+                      SaveFileDialog dialog = new SaveFileDialog();
          
             //this.DialogMessage = "Select The Program That you Want to write the pack on ";
 
@@ -182,6 +186,7 @@ namespace QuickToolsGUI
             try
             {
                 Writer.Write(fileName, this.MainWindowConsoleBox.Text);
+                //Binary.Writer(fileName,)
             }
             catch
             {
@@ -271,11 +276,18 @@ namespace QuickToolsGUI
 
                    this._Buffer =  Binary.Reader(dialog.FileName);
                     this.CurrentFile = dialog.FileName; 
-                    this.ShowPrivateInput();
-                    this.CurrentAction = () => {
-                     byte[] bytes =    new Secure().Encrypt(this._Buffer,new Secure().CreatePassword(this.PrivatePasswordInput.Text), new Secure().CreatePassword(this.PrivatePasswordInput.Text));
-                        Binary.Writer(this.CurrentFile,bytes);
-                    }; 
+                    //this.ShowPrivateInput();
+                    this.CurrentAction = (input) => {
+                     byte[] bytes =    new Secure().Encrypt(this._Buffer,new Secure().CreatePassword(input), new Secure().CreatePassword(input));
+                     Binary.Writer(this.CurrentFile,bytes);
+                    };
+                    this.Box = new InputBox();
+                    this.Box.RequireVerification = true;
+                    this.Box.Window = this;
+                    this.Box.Input.PasswordChar = '*';
+                    this.Box.InputLabel.Text = "Type your password";
+                    this.Hide();
+                    this.Box.Show(); 
                     // MainWindowConsoleBox.
                 }
 
@@ -288,18 +300,7 @@ namespace QuickToolsGUI
             }
         }
 
-        private void HidePrivateInput()
-        {
-            this.PrivatePasswordInputBtn.Visible = false;
-            this.PrivatePasswordInput.Visible = false;
-            this.PrivatePasswordInpuCancellBtn.Visible = false;
-        }
-        private void ShowPrivateInput()
-        {
-            this.PrivatePasswordInput.Visible = true;
-            this.PrivatePasswordInputBtn.Visible = true;
-            this.PrivatePasswordInpuCancellBtn.Visible = true;
-        }
+  
         private void FileDecryptOpt_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -309,6 +310,7 @@ namespace QuickToolsGUI
             this._DialogText = "Select The File ";
             dialog.Title = this._DialogText;
             dialog.Filter = $"All files (*.*)|*.*|{this._DialogText}(*.txt)|*.txt";
+            //dlg.Filter = "Office Files|*.doc;*.xls;*.ppt";
             dialog.FilterIndex = 2;
             try
             {
@@ -318,12 +320,18 @@ namespace QuickToolsGUI
 
                     this._Buffer = Binary.Reader(dialog.FileName);
                     this.CurrentFile = dialog.FileName;
-                    this.ShowPrivateInput();
-                    this.CurrentAction = () => {
-                        string bytes = new Secure().Decrypt(this._Buffer, new Secure().CreatePassword(this.PrivatePasswordInput.Text), new Secure().CreatePassword(this.PrivatePasswordInput.Text));
+                    //this.ShowPrivateInput();
+                    this.CurrentAction = (input) => {
+                        string bytes = new Secure().Decrypt(this._Buffer, new Secure().CreatePassword(input), new Secure().CreatePassword(input));
                         Writer.Write(this.CurrentFile, bytes); 
                     };
-                    // MainWindowConsoleBox.
+                    this.Box = new InputBox();
+                    this.Box.RequireVerification = false;
+                    this.Box.Window = this;
+                    this.Box.Input.PasswordChar = '*';
+                    this.Box.InputLabel.Text = "Type your password";
+                    this.Hide();
+                    this.Box.Show();
                 }
 
 
@@ -337,11 +345,6 @@ namespace QuickToolsGUI
         }
 
         private void MainWindowTopMenu_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
-
-        private void MainWindowConsoleBox_TextChanged(object sender, EventArgs e)
         {
 
         }
@@ -374,14 +377,17 @@ namespace QuickToolsGUI
 
         private void BackGroundWorker_A_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            
+            if(this.CurrentActionChanged != null)
+            {
+                this.CurrentActionChanged();    
+            }
             if(this.MainMenuProgressBarsOpt.Value != 100)
             {
                 this.MainMenuPorcentLabelOpt.Text = this.TextStatus;
                 this.MainMenuProgressBarsOpt.Value++;
             }
             
-             
+            
         }
 
         private void BackGroundWorker_A_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -424,16 +430,81 @@ namespace QuickToolsGUI
 
         private void PrivatePasswordInputBtn_Click(object sender, EventArgs e)
         {
-            if(this.CurrentAction != null && PrivatePasswordInput.Text != "") {
-                this.CurrentAction();
-                this.HidePrivateInput();
-                return;
-            }
+            //if(this.CurrentAction != null && PrivatePasswordInput.Text != "") {
+            //    this.CurrentAction();
+            //    this.HidePrivateInput();
+            //    return;
+            //}
         }
 
         private void PrivatePasswordInput_TextChanged(object sender, EventArgs e)
         {
-            this.PrivatePasswordInput.PasswordChar = '*';
+            //this.PrivatePasswordInput.PasswordChar = '*';
+        }
+
+        private void DataConvertBytesToString_Click(object sender, EventArgs e)
+        {
+             OpenFileDialog dialog = new OpenFileDialog();
+         
+            //this.DialogMessage = "Select The Program That you Want to write the pack on ";
+
+            this._DialogText = "Select The File ";
+            dialog.Title = this._DialogText;
+            dialog.Filter = $"All files (*.*)|*.*";
+            dialog.FilterIndex = 1;
+            DialogResult result = dialog.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+                byte[] bytes =  Binary.Reader(dialog.FileName);
+                string data; 
+                this.CurrentAction = (input) => {
+                    data = IConvert.BytesToString(bytes);
+                    this.TurnOnConsoleMode(); 
+                    this.MainWindowConsoleBox.Text = data;
+                };
+                this.CurrentAction(null);
+                
+            }
+        }
+
+        private void TestBtn_Click(object sender, EventArgs e)
+        {
+            this.ProperSettupForBackGroundWorker();
+        }
+
+        private void asBinaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+               //if (this.MainWindowConsoleBox.Text == "" || this.MainWindowConsoleBox.Text == "Type Something")
+            //{
+            //    MessageBox.Show("Please type something to save");
+            //    return; 
+            //}
+                      SaveFileDialog dialog = new SaveFileDialog();
+         
+            //this.DialogMessage = "Select The Program That you Want to write the pack on ";
+
+            this._DialogText = "Save File ";
+            dialog.Title = this._DialogText;
+            dialog.Filter = $"All files (*.*)|*.*|{this._DialogText}(*.txt)|*.txt";
+            dialog.FilterIndex = 2;
+
+            dialog.ShowDialog();
+            string fileName = dialog.FileName;
+ 
+            try
+            {
+                //Writer.Write(fileName, this.MainWindowConsoleBox.Text);
+                Binary.Writer(fileName, IConvert.StringToBytesArray(this.MainWindowConsoleBox.Text));
+            }
+            catch
+            {
+                MessageBox.Show("Something went wrong while saving the file"); 
+            }
+        }
+
+        private void CloseConsoleBtn_Click(object sender, EventArgs e)
+        {
+            this.TurnOffConsoleMode();
         }
     }
 }

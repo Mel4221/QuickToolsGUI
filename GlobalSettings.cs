@@ -34,7 +34,7 @@ namespace QuickToolsGUI
             QSettings settings = new QSettings(DefaultSettingFile);
             settings.Create();
             settings.Load();
-            settings.UpdateSetting(key, value,true); 
+            settings.UpdateSetting(key, value); 
 
         }
         public static string GetSetting(string key)
