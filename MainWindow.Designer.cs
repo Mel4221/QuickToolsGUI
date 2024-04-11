@@ -56,7 +56,6 @@
 			this.MainWindowMaxBtn = new System.Windows.Forms.ToolStripButton();
 			this.MainWindowMiniBtn = new System.Windows.Forms.ToolStripButton();
 			this.HelpBtn = new System.Windows.Forms.ToolStripButton();
-			this.MainWindowConsoleBox = new System.Windows.Forms.RichTextBox();
 			this.BackGroundWorker_A = new System.ComponentModel.BackgroundWorker();
 			this.MainWindowTopMenu.SuspendLayout();
 			this.SuspendLayout();
@@ -302,26 +301,6 @@
 			this.HelpBtn.Text = "Help";
 			this.HelpBtn.Click += new System.EventHandler(this.HelpBtn_Click);
 			// 
-			// MainWindowConsoleBox
-			// 
-			this.MainWindowConsoleBox.AcceptsTab = true;
-			this.MainWindowConsoleBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-			this.MainWindowConsoleBox.BackColor = System.Drawing.Color.Black;
-			this.MainWindowConsoleBox.Cursor = System.Windows.Forms.Cursors.Arrow;
-			this.MainWindowConsoleBox.EnableAutoDragDrop = true;
-			this.MainWindowConsoleBox.ForeColor = System.Drawing.Color.Lime;
-			this.MainWindowConsoleBox.Location = new System.Drawing.Point(0, 28);
-			this.MainWindowConsoleBox.Name = "MainWindowConsoleBox";
-			this.MainWindowConsoleBox.RightToLeft = System.Windows.Forms.RightToLeft.No;
-			this.MainWindowConsoleBox.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.None;
-			this.MainWindowConsoleBox.Size = new System.Drawing.Size(1062, 633);
-			this.MainWindowConsoleBox.TabIndex = 3;
-			this.MainWindowConsoleBox.Text = "";
-			this.MainWindowConsoleBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MainWindowConsoleBox_KeyDown);
-			this.MainWindowConsoleBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainWindowConsoleBox_MouseMove);
-			// 
 			// BackGroundWorker_A
 			// 
 			this.BackGroundWorker_A.WorkerReportsProgress = true;
@@ -337,7 +316,6 @@
 			this.BackColor = System.Drawing.Color.Black;
 			this.ClientSize = new System.Drawing.Size(1062, 673);
 			this.Controls.Add(this.MainWindowTopMenu);
-			this.Controls.Add(this.MainWindowConsoleBox);
 			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.ForeColor = System.Drawing.Color.Lime;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -360,7 +338,6 @@
         private System.Windows.Forms.ToolStripButton MainWindowMiniBtn;
         private System.Windows.Forms.ToolStripButton MainWindowMaxBtn;
         private System.Windows.Forms.ToolStripButton MainWindowCloseBtn;
-        public System.Windows.Forms.RichTextBox MainWindowConsoleBox;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator;
         private System.Windows.Forms.ToolStripDropDownButton MainMenuFileOpt;
         private System.Windows.Forms.ToolStripMenuItem FileOpenOpt;
