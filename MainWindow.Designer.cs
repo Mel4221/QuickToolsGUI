@@ -336,8 +336,8 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Black;
 			this.ClientSize = new System.Drawing.Size(1062, 673);
-			this.Controls.Add(this.MainWindowConsoleBox);
 			this.Controls.Add(this.MainWindowTopMenu);
+			this.Controls.Add(this.MainWindowConsoleBox);
 			this.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.ForeColor = System.Drawing.Color.Lime;
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

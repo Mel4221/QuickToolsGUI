@@ -26,9 +26,8 @@ namespace QuickToolsGUI
         public Action<string> CurrentAction;
         public Action CurrentActionChanged;
         public string CurrentFile { get; set; }
-
-
         public bool ConsoleModeStatus { get; set; } 
+
         public MainWindow()
         { 
             InitializeComponent();
@@ -180,8 +179,12 @@ namespace QuickToolsGUI
             dialog.Filter = $"All files (*.*)|*.*|{this._DialogText}(*.txt)|*.txt";
             dialog.FilterIndex = 2;
 
-            dialog.ShowDialog();
+            if (File.Exists(this.Text)) dialog.FileName = this.Text;
+
+            DialogResult result = dialog.ShowDialog();
+
             string fileName = dialog.FileName;
+            if (result != DialogResult.OK) return;
  
             try
             {
@@ -278,7 +281,7 @@ namespace QuickToolsGUI
                     this.CurrentFile = dialog.FileName; 
                     //this.ShowPrivateInput();
                     this.CurrentAction = (input) => {
-                     byte[] bytes =    new Secure().Encrypt(this._Buffer,new Secure().CreatePassword(input), new Secure().CreatePassword(input));
+                     byte[] bytes =    new Secure().Encrypt(this._Buffer,Secure.CreatePassword(input), Secure.CreatePassword(input));
                      Binary.Writer(this.CurrentFile,bytes);
                     };
                     this.Box = new InputBox();
@@ -321,8 +324,9 @@ namespace QuickToolsGUI
                     this._Buffer = Binary.Reader(dialog.FileName);
                     this.CurrentFile = dialog.FileName;
                     //this.ShowPrivateInput();
-                    this.CurrentAction = (input) => {
-                        string bytes = new Secure().Decrypt(this._Buffer, new Secure().CreatePassword(input), new Secure().CreatePassword(input));
+                    this.CurrentAction = (input) => 
+                    {
+                        string bytes = new Secure().Decrypt(this._Buffer,Secure.CreatePassword(input),Secure.CreatePassword(input));
                         Writer.Write(this.CurrentFile, bytes); 
                     };
                     this.Box = new InputBox();
